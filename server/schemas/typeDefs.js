@@ -9,20 +9,20 @@ const typeDefs = gql`
 
   type Project {
     _id: ID
-    postCode:Number
+    postCode:Int
     stateName:String
     districtName: String
     streetAddress:String
     summary: String
     description: String
-    cost:Number
+    cost:Float
     map:String
     problemimg: String
     progressImg: String
-    createdAt:Date
-    completedDate: Date
-    categories:Number
-    comments: [Comments]
+    categories:Int
+    comments: [Comment]
+    funds: [Fund]
+    category: Category
   }
 
   type Category {
@@ -33,50 +33,20 @@ const typeDefs = gql`
     _id: ID
     commentText:String
     commentAuthor: String
-    rating:Number
+    rating:Int
     replies:[Reply]
   }
-  type Donate {
+
+  type Reply{
+    _id: ID
+    replyText:String
+    replyAuthor: String
+  }
+  type Fund {
     _id: ID
     cost:Float
-    projects:[Project]
+    
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   type Auth {
@@ -87,6 +57,15 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
+    categories: [Category]
+    comments: [Comment]
+    projects(category: ID, name: String,comment:ID, commentAuthor: String, rating:Int):[Project]
+    project(_id: ID!): Project
+
+
+
+
+
   }
 
 

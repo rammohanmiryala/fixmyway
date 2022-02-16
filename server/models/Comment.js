@@ -1,8 +1,11 @@
 const { Schema, model } = require('mongoose');
 const replySchema = require('./Reply');
 
-
 const commentSchema = new Schema({
+    commentId: {
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId(),
+      },
     commentText: {
         type: String,
         required: true,
@@ -37,3 +40,4 @@ commentSchema.virtual("replayCount")
     const Comment = model('Comment', commentSchema);
 
     module.exports = Comment;
+    module.exports = commentSchema;

@@ -3,8 +3,10 @@ const {
   model
 } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
+const fundSchema = require('./Fund');
+const commentsSchema = require('./Comment');
 
-const ProjectSchema = new Schema({
+const projectSchema = new Schema({
   postCode: {
     type: Number,
     required: true,
@@ -69,16 +71,31 @@ const ProjectSchema = new Schema({
     type: Number,
     ref: 'Category',
   },
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
-    }
-  ]
+  comments:[commentsSchema],
+  funding:[fundSchema]
 
-
+}, {
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
 });
 
-const Project = model('Project', ProjectSchema);
+projectSchema.virtual("fundingCount")
+  .get(function () {
+    return this.funding.length;
+  });
+  projectSchema.virtual("commentCount")
+  .get(function () {
+    return this.comment.length;
+  });
+
+
+
+const Project = model('Project', projectSchema);
 
 module.exports = Project;
+
+
+
+
