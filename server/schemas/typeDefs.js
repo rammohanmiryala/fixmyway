@@ -7,6 +7,78 @@ const typeDefs = gql`
     email: String
   }
 
+  type Project {
+    _id: ID
+    postCode:Number
+    stateName:String
+    districtName: String
+    streetAddress:String
+    summary: String
+    description: String
+    cost:Number
+    map:String
+    problemimg: String
+    progressImg: String
+    createdAt:Date
+    completedDate: Date
+    categories:Number
+    comments: [Comments]
+  }
+
+  type Category {
+    _id: ID
+    name: String
+  }
+  type Comment {
+    _id: ID
+    commentText:String
+    commentAuthor: String
+    rating:Number
+    replies:[Reply]
+  }
+  type Donate {
+    _id: ID
+    cost:Float
+    projects:[Project]
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   type Auth {
     token: ID!
     user: User
@@ -16,6 +88,12 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
   }
+
+
+
+
+
+  
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth

@@ -2,13 +2,13 @@ const {
   Schema,
   model
 } = require('mongoose');
+
 const dateFormat = require('../utils/dateFormat');
 
 const DonateSchema = new Schema({
   cost: {
     type: Number,
     required: true,
-    unique: true,
     trim: true,
   },
   createdAt: {
@@ -16,7 +16,12 @@ const DonateSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  
+  projects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }
+  ]
 });
 
 const Donate = model('Donate', DonateSchema);

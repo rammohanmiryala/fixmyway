@@ -17,8 +17,13 @@
     "concurrently": "^7.0.0"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "develop": "^1.0.0",
+    "express": "^4.17.2",
     "india-pincode-lookup": "^1.0.3",
+    "mongodb": "^4.3.1",
+    "multer": "^1.4.4",
+    "multer-gridfs-storage": "^5.0.2",
     "react-router-dom": "^6.2.1"
   }
 }

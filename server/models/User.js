@@ -19,11 +19,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  },
 });
 
 userSchema.pre('save', async function (next) {

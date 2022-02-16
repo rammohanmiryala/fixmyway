@@ -5,7 +5,7 @@ const {
 const dateFormat = require('../utils/dateFormat');
 
 const ProjectSchema = new Schema({
-  PostCode: {
+  postCode: {
     type: Number,
     required: true,
     unique: true,
@@ -14,21 +14,22 @@ const ProjectSchema = new Schema({
   },
   stateName: {
     type: String,
-    unique: true,
+    required: true,
+  },
+  districtName: {
+    type: String,
     required: true,
 
   },
-  cityName: {
+  streetAddress:{
     type: String,
-    unique: true,
-    required: true,
-
+    required: true
   },
   summary: {
     type: String,
     required: true,
-    minlength: 15,
-    maxlength: 20,
+    minlength: 1,
+    maxlength: 250,
   },
   description: {
     type: String,
@@ -39,50 +40,42 @@ const ProjectSchema = new Schema({
   cost: {
     type: Number,
     required: true,
-    unique: true,
     trim: true,
   },
   map: {
-    data:Buffer,
-    contentType:String,
+    type: String,
+
   },
-  problemimg:{
-    data: Buffer,
-    contentType: String,
+  problemimg: {
+    type: String,
+
   },
-  progressImg:{
-    data: Buffer,
-    contentType: String,
+  progressImg: {
+    type: String,
+
   },
   createdAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  completedDate:{
+  completedDate: {
     type: Date,
     get: (timestamp) => dateFormat(timestamp),
 
   },
+  categories: {
+    type: Schema.Types.ObjectId,
+    type: Number,
+    ref: 'Category',
+  },
   comments: [
     {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      commentAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
+      type: Schema.Types.ObjectId,
+      ref: 'Comment',
+    }
+  ]
+
 
 });
 
