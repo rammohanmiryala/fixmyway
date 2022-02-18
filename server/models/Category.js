@@ -7,14 +7,8 @@ const categorySchema = new Schema({
     type: String,
     required: true,
     trim: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  },
+  }
 });
-
 
 const Category = mongoose.model('Category', categorySchema);
 

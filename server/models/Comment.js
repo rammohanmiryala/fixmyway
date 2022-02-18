@@ -1,11 +1,14 @@
-const { Schema, model } = require('mongoose');
-const replySchema = require('./Reply');
+const {
+    Schema,
+    Types,model
+} = require('mongoose');
+
 
 const commentSchema = new Schema({
     commentId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId(),
-      },
+    },
     commentText: {
         type: String,
         required: true,
@@ -24,20 +27,14 @@ const commentSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-    replies: [replySchema]
+
 }, {
     toJSON: {
-        virtuals: true,
+        getters: true,
     },
     id: false,
 });
 
-commentSchema.virtual("replayCount")
-    .get(function () {
-        return this.replies.length;
-    });
 
-    const Comment = model('Comment', commentSchema);
 
-    module.exports = Comment;
-    module.exports = commentSchema;
+module.exports = commentSchema;

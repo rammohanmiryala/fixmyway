@@ -23,3 +23,35 @@ export const ADD_USER = gql`
     }
   }
 `;
+// export const ADD_COMMENT = gql`
+//   mutation addComment($projectId: ID!, $commentText: String!) {
+//     addComment(projectId: $projectId, commentText: $commentText) {
+//       _id
+//       projectTitle
+//       projectDescription
+//       projectAuthor
+//       category
+//       createdAt
+//       comments {
+//         _id
+//         commentText
+//         createdAt
+//       }
+//     }
+//   }
+// `;
+// export const ADD_PROJECT = gql`
+//   mutation addProject($projectId: ID!, $projectTitle: String!,$projectDescription: String!) {
+//     addProject(projectId: $projectId, commentText: $commentText) {
+//       _id
+//       projectTitle
+//       projectDescription
+//       createdAt
+//       comments {
+//         _id
+//         commentText
+//         createdAt
+//       }
+//     }
+//   }
+// `;
